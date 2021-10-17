@@ -4,12 +4,13 @@ import hw9.family.Animals.Pet;
 import hw9.family.DayOfWeek;
 
 import java.util.*;
+import java.time.LocalDate;
 
 public abstract class Human {
 
     private String name;
     private String surname;
-    private int year;
+    private LocalDate birthDate;
     private int iq;
     private Map<DayOfWeek, List<String>> schedule;
     private Family family;
@@ -36,15 +37,15 @@ public abstract class Human {
     Human() {
     }
 
-    Human(String name, String surname, int year) {
+    Human(String name, String surname, LocalDate birthDate) {
         this.name = name;
         this.surname = surname;
-        this.year = year;
+        this.birthDate = birthDate;
     }
 
-    Human(String name, String surname, int year,
+    Human(String name, String surname, LocalDate birthDate,
           int iq, Map<DayOfWeek, List<String>> schedule, Family family) {
-        this(name, surname, year);
+        this(name, surname, birthDate);
         this.iq = iq;
         this.schedule.putAll(schedule);
         this.family = family;
@@ -96,14 +97,14 @@ public abstract class Human {
 
     ;
 
-    public int getYear() {
-        return this.year;
+    public LocalDate getBirthDate() {
+        return this.birthDate;
     }
 
     ;
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
     }
 
     ;
@@ -146,7 +147,7 @@ public abstract class Human {
     @Override
     public String toString() {
         return "Human{ name=" + this.getName() + ", surname= " + this.getSurname() +
-                ", year=" + this.getYear() + ", iq=" + this.getIq() +
+                ", year=" + this.getBirthDate() + ", iq=" + this.getIq() +
 //                ", family=" + this.getFamily().toString() +
 //                ", schedule=" + this.getSchedule().toString() +
                 "}\n ";

@@ -70,17 +70,6 @@ public class Main {
 
 
 
-//последовательно раскомментируй для проверки остальных методов:
-
-//        controller.FamilyService.displayAllFamilies();
-//        controller.FamilyService.getFamiliesBiggerThan(4);
-//        controller.FamilyService.getFamiliesLessThan(4);
-//        controller.FamilyService.countFamiliesWithMemberNumber(4);
-//        controller.FamilyService.deleteFamilyByIndex(1);
-//        controller.FamilyService.deleteAllChildrenOlderThen(9);
-//        controller.FamilyService.count();
-
-
     }
 }
 
