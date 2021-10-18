@@ -3,6 +3,7 @@ package hw9.family.People;
 import hw9.family.Animals.Pet;
 import hw9.family.DayOfWeek;
 
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.LocalDate;
 
@@ -147,7 +148,7 @@ public abstract class Human {
     @Override
     public String toString() {
         return "Human{ name=" + this.getName() + ", surname= " + this.getSurname() +
-                ", year=" + this.getBirthDate() + ", iq=" + this.getIq() +
+                ", year=" + this.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ", iq=" + this.getIq() +
 //                ", family=" + this.getFamily().toString() +
 //                ", schedule=" + this.getSchedule().toString() +
                 "}\n ";

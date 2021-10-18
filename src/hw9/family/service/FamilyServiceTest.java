@@ -8,6 +8,7 @@ import hw9.family.People.Family;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,17 +48,18 @@ public class FamilyServiceTest {
         FamilyController controller = new FamilyController(module);
         //задание прочих входных параметров для создания семей:
         Random rnd = new Random();
-        int amntOwn, amntAdopted, dadBirthYear, momBirthYear;
+        int amntOwn, amntAdopted;
+        LocalDate dadBirthDate, momBirthDate;
 
         for (List<String> names : familyData) {
             amntOwn = 4;
             amntAdopted = 3;
-            dadBirthYear = 1970;
-            momBirthYear = 1980;
+            dadBirthDate = LocalDate.now();
+            momBirthDate = LocalDate.now();
 
             //создание семей и испытании метода createNewFamily():
             module.createNewFamily(names.get(0), names.get(1), names.get(2),
-                    dadBirthYear, momBirthYear, amntOwn, amntAdopted);
+                    dadBirthDate, momBirthDate, amntOwn, amntAdopted);
         }
     }
 
@@ -90,28 +92,28 @@ public class FamilyServiceTest {
     @Test
     public void testCreateNewFamilySuccessful() {
         boolean result = module.createNewFamily("Ivan", "Ivanka", "Ivanov",
-                1989, 1990, 1, 1);
+                LocalDate.of(1983, 2 ,14), LocalDate.of(1991, 4 ,2), 1, 1);
         assertTrue(result);
     }
 
     @Test
     public void testCreateNewFamilyUnSuccessful1() {
         boolean result = module.createNewFamily(null, "Ivanka", "Ivanov",
-                1989, 1990, 1, 1);
+                LocalDate.of(1983, 2 ,14), LocalDate.of(1991, 4 ,2), 1, 1);
         assertFalse(result);
     }
 
     @Test
     public void testCreateNewFamilyUnSuccessful2() {
         boolean result = module.createNewFamily("Ivan", "Ivanka", "Ivanov",
-                1989, 1990, -1, 1);
+                LocalDate.of(1983, 2 ,14), LocalDate.of(1991, 4 ,2), -1, 1);
         assertFalse(result);
     }
 
     @Test
     public void testCreateNewFamilyUnSuccessful3() {
         boolean result = module.createNewFamily("Ivan", "Ivanka", "Ivanov",
-                1989, 1990, 1, -1);
+                LocalDate.of(1983, 2 ,14), LocalDate.of(1991, 4 ,2), 1, -1);
         assertFalse(result);
     }
 

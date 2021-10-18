@@ -70,10 +70,10 @@ public class FamilyService implements Services {
     }
 
     public boolean createNewFamily(String dadName, String momName, String lastName,
-                                   int dadBirthYear, int momBirthYear, int ownChildren, int adoptedChildren) {
+                                   LocalDate dadBirthDate, LocalDate momBirthDate, int ownChildren, int adoptedChildren) {
         if (dadName == null || momName == null || ownChildren < 0 || adoptedChildren < 0) return false;
-        Human dad = new Man(dadName, lastName, dadBirthYear);
-        Human mom = new Woman(momName, lastName + "a", momBirthYear);
+        Human dad = new Man(dadName, lastName, dadBirthDate);
+        Human mom = new Woman(momName, lastName + "a", momBirthDate);
         Family family = new Family(dad, mom);
         dad.setFamily(family);
         mom.setFamily(family);
@@ -84,7 +84,7 @@ public class FamilyService implements Services {
         }
 
         for (int i = 0; i < adoptedChildren; i++) {
-            adoptChild(family, new Man("fake", "fake", 2008));
+            adoptChild(family, new Man("fake", "fake", LocalDate.now()));
 //            System.out.println("adopted a child: " + family.getChildren().get(ownChildren + i).toString());
         }
         dao.saveFamily(family);
@@ -100,22 +100,25 @@ public class FamilyService implements Services {
         String babyName = "";
         Human newBaby = null;
         Sex sex;       // MASCULINE, FEMININE
-        int rndSex, birthYear;
+        int rndSex, birthYear, birthMonth, birthDay;
 
         int babyIq = (family.getFather().getIq() + family.getMother().getIq()) / 2;
 
         Random random = new Random();
         rndSex = random.nextInt(2);
         birthYear = random.nextInt(10) + 2010;
+        birthMonth = random.nextInt(12) + 1;
+        birthDay = random.nextInt(28)+1;
         sex = (rndSex == 0) ? Sex.MASCULINE : Sex.FEMININE;
         babyName = GenerateRandomName.get(sex);
+        LocalDate birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
 
         switch (sex) {
             case MASCULINE:
-                newBaby = new Man("мальчик: " + babyName, family.getFather().getSurname(), birthYear, babyIq, family.getFather().getSchedule(), family);
+                newBaby = new Man("мальчик: " + babyName, family.getFather().getSurname(), birthDate, babyIq, family.getFather().getSchedule(), family);
                 break;
             case FEMININE:
-                newBaby = new Woman("девочка: " + babyName, family.getFather().getSurname() + "a", birthYear, babyIq, family.getFather().getSchedule(), family);
+                newBaby = new Woman("девочка: " + babyName, family.getFather().getSurname() + "a", birthDate, babyIq, family.getFather().getSchedule(), family);
                 break;
             default:
         }
@@ -133,21 +136,21 @@ public class FamilyService implements Services {
 
 
     public boolean deleteAllChildrenOlderThen(int age) {
-        if (age <= 0) return false;
-        List<Family> families = dao.getAllFamilies();
-        int yearNow = LocalDate.now().getYear();
-        for (int i = 0; i < families.size(); i++) {
-            for (int j = 0; j < families.get(i).getChildren().size(); j++) {
-                int birthYear = families.get(i).getChildren().get(j).getYear();
-                if (yearNow - birthYear > age) {
-                    System.out.println("this child is: " + (yearNow - birthYear) + " years old and must be deleted!");
-                    System.out.println("deleting: " + families.get(i).getChildren().get(j));
-                    dao.deleteChild(i, j);
-                }
-            }
-        }
-        System.out.println("after removal of children aged over " + age + " years old: ");
-        System.out.println(dao.getAllFamilies());
+//        if (age <= 0) return false;
+//        List<Family> families = dao.getAllFamilies();
+//        int yearNow = LocalDate.now().getYear();
+//        for (int i = 0; i < families.size(); i++) {
+//            for (int j = 0; j < families.get(i).getChildren().size(); j++) {
+//                int birthYear = families.get(i).getChildren().get(j).getBirthDate();
+//                if (yearNow - birthYear > age) {
+//                    System.out.println("this child is: " + (yearNow - birthYear) + " years old and must be deleted!");
+//                    System.out.println("deleting: " + families.get(i).getChildren().get(j));
+//                    dao.deleteChild(i, j);
+//                }
+//            }
+//        }
+//        System.out.println("after removal of children aged over " + age + " years old: ");
+//        System.out.println(dao.getAllFamilies());
         return true;
     }
 

@@ -9,6 +9,7 @@ import hw9.family.DAO.CollectionFamilyDao;
 import hw9.family.People.*;
 import hw9.family.service.FamilyService;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -45,18 +46,19 @@ public class Main {
 
         //задание прочих входных параметров для создания семей:
         Random rnd = new Random();
-        int amntOwn, amntAdopted, dadBirthYear, momBirthYear;
+        int amntOwn, amntAdopted;
+        LocalDate dadBirthDate, momBirthDate;
 
         for (List<String> names : familyData) {
             amntOwn = rnd.nextInt(4);
             amntAdopted = rnd.nextInt(3);
-            dadBirthYear = rnd.nextInt(10) + 1970;
-            momBirthYear = rnd.nextInt(30) + 1970;
+            dadBirthDate = LocalDate.of(1980, 1 , 15);
+            momBirthDate = dadBirthDate.plusYears(10L).plusMonths(2L).plusDays(13);
 
 
             //создание семей и испытании метода createNewFamily():
             service.createNewFamily(names.get(0), names.get(1), names.get(2),
-                    dadBirthYear, momBirthYear, amntOwn, amntAdopted);
+                    dadBirthDate, momBirthDate, amntOwn, amntAdopted);
         }
 
 

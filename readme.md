@@ -21,6 +21,6 @@
 
 
 Литература:
-
-Дата и время
-http://proglang.su/java/date-and-time
+https://dan-it.gitlab.io/fs-book/java-basic/ext/ext_newDate_and_TimeAPI_introduction/ext_newDate_and_TimeAPI_introduction.html
+https://dan-it.gitlab.io/fs-book/java-basic/ext/ext_newDate_and_TimeAPI_part1/ext_newDate_and_TimeAPI_part1.html
+https://dan-it.gitlab.io/fs-book/java-basic/ext/ext_newDate_and_TimeAPI_part4/ext_newDate_and_TimeAPI_part4.html

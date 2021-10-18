@@ -8,6 +8,7 @@ import hw9.family.People.Woman;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +26,13 @@ public class FamilyAddChildrenTest {
         schedule.put(DayOfWeek.MONDAY, List.of("First day born"));
         schedule.put(DayOfWeek.TUESDAY, List.of("First day born"));
         schedule.put(DayOfWeek.WEDNESDAY, List.of("Third day born"));
-        module = new Family(new Woman("Mother", "Ryab", 1960),
-                new Man("Father", "Ryab", 1960)
+        LocalDate momAge = LocalDate.of(1992, 4, 4);
+        module = new Family(new Woman("Mother", "Ryab", momAge),
+                new Man("Father", "Ryab", momAge.minusYears(14L).minusMonths(23L).minusDays(23L))
         );
-        kid1 = new Man("Kid1", "Kidovich1", 2000,
+        kid1 = new Man("Kid1", "Kidovich1", momAge.plusYears(25L),
                 1, schedule, module);
-        kid2 = new Woman("Kid2", "Kidovich2", 2000,
+        kid2 = new Woman("Kid2", "Kidovich2", momAge.plusYears(27L).plusMonths(2L),
                 2, schedule, module);
 
         module.setChildren(kid1);
@@ -39,7 +41,7 @@ public class FamilyAddChildrenTest {
 
     @Test
     public void testAddChildSuccess() {
-        Human newChild = new Man("test", "test", 2010);
+        Human newChild = new Man("test", "test", LocalDate.of(1986, 1, 4));
         int initialCount = module.getChildren().size();
         module.addChild(newChild);
         int finalCount = module.getChildren().size();

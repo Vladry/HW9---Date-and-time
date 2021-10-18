@@ -8,6 +8,7 @@ import hw9.family.People.Woman;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,12 +28,13 @@ public class FamilyToStringTest {
         schedule.put(DayOfWeek.SUNDAY, List.of("First day born"));
         schedule.put(DayOfWeek.MONDAY, List.of("Second day born"));
         schedule.put(DayOfWeek.TUESDAY, List.of("Third day born"));
-        module = new Family(new Woman("blablabla", "Ryab", 1960),
-                new Man("Father", "Ryab", 1960)
+        LocalDate dadBirthDate = LocalDate.of(1974, 3, 11);
+        module = new Family(new Woman("blablabla", "Ryab", dadBirthDate.minusYears(17L)),
+                new Man("Father", "Ryab", dadBirthDate)
         );
-        kid1 = new Man("Kid1", "Kidovich1", 2000,
+        kid1 = new Man("Kid1", "Kidovich1", dadBirthDate.minusYears(30L),
                 1, schedule, module);
-        kid2 = new Woman("Kid2", "Kidovich2", 2000,
+        kid2 = new Woman("Kid2", "Kidovich2", dadBirthDate.minusYears(36L),
                 2, schedule, module);
 
         module.setChildren(kid1);
