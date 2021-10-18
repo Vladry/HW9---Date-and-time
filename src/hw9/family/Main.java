@@ -52,7 +52,7 @@ public class Main {
         for (List<String> names : familyData) {
             amntOwn = rnd.nextInt(4);
             amntAdopted = rnd.nextInt(3);
-            dadBirthDate = LocalDate.of(1980, 1 , 15);
+            dadBirthDate = LocalDate.of(1973, 5 , 13);
             momBirthDate = dadBirthDate.plusYears(10L).plusMonths(2L).plusDays(13);
 
 
@@ -69,9 +69,6 @@ public class Main {
         controller.FamilyService.getFamilyById(1);
         controller.FamilyService.getFamilyById(2);
         controller.FamilyService.getFamilyById(3);
-
-
-
     }
 }
 

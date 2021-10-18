@@ -77,6 +77,7 @@ public class FamilyService implements Services {
         Family family = new Family(dad, mom);
         dad.setFamily(family);
         mom.setFamily(family);
+//        System.out.println("dad describeAge():  " + dad.describeAge()); //расчитать возраст человека
 
         for (int i = 0; i < ownChildren; i++) {
             bornChild(family, dadName, momName);

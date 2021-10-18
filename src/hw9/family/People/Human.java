@@ -3,6 +3,7 @@ package hw9.family.People;
 import hw9.family.Animals.Pet;
 import hw9.family.DayOfWeek;
 
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.time.LocalDate;
@@ -51,6 +52,33 @@ public abstract class Human {
         this.schedule.putAll(schedule);
         this.family = family;
     }
+
+    // конструктор для усыновленных детей согласно TЗ домашки №9:
+    Human(String name, String surname, String birthDateStr,
+          int iq){
+        this.name = name;
+        this.surname = surname;
+        this.iq = iq;
+        this.birthDate = LocalDate.parse(birthDateStr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));  // 20/03/2016
+    }
+
+    public String describeAge(){
+        LocalDate now = LocalDate.now();
+        String dateString;
+
+        Period period = Period.between(birthDate, now);
+        dateString = "full years: "
+                + period.getYears()
+                + "\n full months: "
+                + period.getMonths()
+                + "\n full days: "
+                + period.getDays();
+
+        System.out.println(dateString);
+        return dateString;
+    }
+
+
 
     public void greetPet(Pet pet) {
         System.out.println("Привет, " + pet.getNickname());
@@ -149,8 +177,6 @@ public abstract class Human {
     public String toString() {
         return "Human{ name=" + this.getName() + ", surname= " + this.getSurname() +
                 ", year=" + this.getBirthDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + ", iq=" + this.getIq() +
-//                ", family=" + this.getFamily().toString() +
-//                ", schedule=" + this.getSchedule().toString() +
                 "}\n ";
     }
 
