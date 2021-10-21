@@ -26,13 +26,13 @@ public class FamilyController {
 
 //последовательно раскомментируй для проверки остальных методов:
 
-//        FamilyService.displayAllFamilies();
-//        FamilyService.getFamiliesBiggerThan(4);
-//        FamilyService.getFamiliesLessThan(4);
-//        FamilyService.countFamiliesWithMemberNumber(4);
-//        FamilyService.deleteFamilyByIndex(1);
-//        FamilyService.deleteAllChildrenOlderThen(9);
-//        FamilyService.count();
+        FamilyService.displayAllFamilies();
+        FamilyService.getFamiliesBiggerThan(4);
+        FamilyService.getFamiliesLessThan(4);
+        FamilyService.countFamiliesWithMemberNumber(4);
+        FamilyService.deleteFamilyByIndex(1);
+        FamilyService.deleteAllChildrenOlderThen(9);
+        FamilyService.count();
 
     }
 
