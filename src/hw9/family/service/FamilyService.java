@@ -136,22 +136,22 @@ public class FamilyService implements Services {
     }
 
 
-    public boolean deleteAllChildrenOlderThen(int age) {
-//        if (age <= 0) return false;
-//        List<Family> families = dao.getAllFamilies();
-//        int yearNow = LocalDate.now().getYear();
-//        for (int i = 0; i < families.size(); i++) {
-//            for (int j = 0; j < families.get(i).getChildren().size(); j++) {
-//                int birthYear = families.get(i).getChildren().get(j).getBirthDate();
-//                if (yearNow - birthYear > age) {
-//                    System.out.println("this child is: " + (yearNow - birthYear) + " years old and must be deleted!");
-//                    System.out.println("deleting: " + families.get(i).getChildren().get(j));
-//                    dao.deleteChild(i, j);
-//                }
-//            }
-//        }
-//        System.out.println("after removal of children aged over " + age + " years old: ");
-//        System.out.println(dao.getAllFamilies());
+    public boolean deleteAllChildrenOlderThen(int age){
+        if (age <= 0) return false;
+        List<Family> families = dao.getAllFamilies();
+        int yearNow = LocalDate.now().getYear();
+        for (int i = 0; i < families.size(); i++) {
+            for (int j = 0; j < families.get(i).getChildren().size(); j++) {
+                int birthYear = families.get(i).getChildren().get(j).getBirthDate().getYear();
+                if (LocalDate.now().getYear() - birthYear > age) {
+                    System.out.println("this child is: " + (yearNow - birthYear) + " years old and must be deleted!");
+                    System.out.println("deleting: " + families.get(i).getChildren().get(j));
+                    dao.deleteChild(i, j);
+                }
+            }
+        }
+        System.out.println("after removal of children aged over " + age + " years old: ");
+        System.out.println(dao.getAllFamilies());
         return true;
     }
 
